@@ -6,8 +6,15 @@ from pydantic import BaseModel, Field
 
 class UnifiedDocument(BaseModel):
     """
-    Hệ thống cần 6 trường thông tin chuẩn (document_id, source_type, author, category, content, timestamp). 
-    TODO: Khai báo các trường với kiểu dữ liệu str ở dưới.
+    Schema chuẩn hóa duy nhất cho toàn bộ pipeline.
+    Hợp nhất dữ liệu từ 2 nguồn:
+      - Group A (PDF/OCR):   docId, authorName, docCategory, extractedText, createdAt
+      - Group B (Video/STT): video_id, creator_name, category, transcript, published_timestamp
     """
-    # Khai báo các trường ở đây...
-    pass
+
+    document_id: str = Field(...)
+    source_type: str = Field(...)
+    author: str = Field(...)
+    category: str = Field(...)
+    content: str = Field(...)
+    timestamp: str = Field(...)
